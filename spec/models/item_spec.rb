@@ -70,31 +70,31 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーに「---」が選択されている場合は出品できない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
       it '商品の状態にに「---」が選択されている場合は出品できない' do
         @item.status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
 
       it '配送料の状態に「---」が選択されている場合は出品できない' do
         @item.charge_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Charge must be other than 1")
+        expect(@item.errors.full_messages).to include('Charge must be other than 1')
       end
 
       it '配送元の地域に「---」が選択されている場合は出品できない' do
         @item.prefecture_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
       end
 
       it '発送までの日数に「---」が選択されている場合は出品できない' do
         @item.send_day_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Send day must be other than 1")
+        expect(@item.errors.full_messages).to include('Send day must be other than 1')
       end
 
       it '価格が全角だと登録できない' do
