@@ -4,9 +4,9 @@ FactoryBot.define do
     prefecture_id { 2 }
     municipalities { '横浜市緑区' }
     house_number { '青山1-1-1' }
+    building { '柳ビル' }
     phone_number { "0#{rand(0..9)}0#{rand(1_000_000..99_999_999)}" }
-    user_id { 5 }
-    item_id { 5 }
     token { 'tok_***********' }
+    association :user,:item
   end
 end
