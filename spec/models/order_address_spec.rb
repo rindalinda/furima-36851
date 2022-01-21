@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   before do
     @order_address = FactoryBot.build(:order_address)
-end
+  end
 
   describe '商品購入機能' do
     context '商品の購入ができる' do
-      it "postal_code,prefecture_id,municipalities,house_number,phone_number,user_id,item_id,tokenがあれば保存できる" do
+      it 'postal_code,prefecture_id,municipalities,house_number,phone_number,user_id,item_id,tokenがあれば保存できる' do
         expect(@order_address).to be_valid
       end
-    end  
- 
+    end
+
     context '商品の購入ができない' do
       it 'postal_codeが空では保存できない' do
         @order_address.postal_code = ''
@@ -22,19 +22,19 @@ end
       it 'postal_codeは-がなければ保存できない' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'postal_codeは全角数字では保存できない' do
         @order_address.postal_code = '１２３-４５６７'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'prefecture_idが空では保存できない' do
         @order_address.prefecture_id = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Prefecture is not a number")
+        expect(@order_address.errors.full_messages).to include('Prefecture is not a number')
       end
 
       it '都道府県に「---」が選択されている場合は出品できない' do
@@ -64,13 +64,13 @@ end
       it 'phone_numberは-をつけたら保存できない' do
         @order_address.phone_number = '090-1234-5678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberは全角数値では保存できない' do
         @order_address.phone_number = '０９０１２３４５６７８'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'userが紐づいていないと保存できない' do

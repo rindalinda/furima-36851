@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, only: [:edit,:destroy,]
+  before_action :move_to_index, only: [:edit, :destroy]
   before_action :prevent_url, only: :edit
 
   def index
@@ -54,9 +54,7 @@ class ItemsController < ApplicationController
     redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id
   end
 
-  def prevent_url 
-    if @item.user_id != current_user.id || @item.order != nil
-      redirect_to root_path
-    end
+  def prevent_url
+    redirect_to root_path if @item.user_id != current_user.id || !@item.order.nil?
   end
 end
